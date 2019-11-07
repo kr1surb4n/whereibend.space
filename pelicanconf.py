@@ -4,10 +4,12 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Oren Kot'
 SITENAME = 'whereibend.space'
+#SITEURL = 'http://localhost:8000'
+UNI_SITEURL = '//whereibend.space'
 SITEURL = 'https://whereibend.space'
 
 PATH = 'content'
-
+THEME = 'themes/svbtle'
 TIMEZONE = 'Europe/Berlin'
 
 DEFAULT_LANG = u'en'
