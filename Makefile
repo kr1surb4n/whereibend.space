@@ -79,7 +79,10 @@ prepare-content:
 	publishing_boy notes content
 
 publish: build
+	git checkout master
+	git merge -s resolve $(WORKING_BRANCH)
 	git push $(ORIGIN) master
+	git branch -D $(WORKING_BRANCH)
 
 publish-test:
 	git checkout master
