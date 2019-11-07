@@ -1,0 +1,6 @@
+pelican
+markdown
+typogrify
+publishing_boy
+django
+invoke
