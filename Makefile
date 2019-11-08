@@ -71,7 +71,7 @@ docker: clean
 
 generate-page:
 	rm -fr output/*
-	pelican content -t cebong -s pelicanconf.py
+	pelican content -t themes/svbtle -s pelicanconf.py
 
 prepare-content:
 	export PB_AUTHOR=$(AUTHOR)
