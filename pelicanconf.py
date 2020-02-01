@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Oren Kot'
+AUTHOR = u'Kris Urbanski'
 SITENAME = 'whereibend.space'
 #SITEURL = 'http://localhost:8000'
 UNI_SITEURL = '//whereibend.space'
@@ -23,8 +23,6 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = tuple()
-         #('Python.org', 'http://python.org/'),
-         #('Jinja2', 'http://jinja.pocoo.org/'),
          #('You can modify those links in your config file', '#'),)
 
 # Social widget

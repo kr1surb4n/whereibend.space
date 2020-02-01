@@ -27,7 +27,7 @@ export PRINT_HELP_PYSCRIPT
 
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
-AUTHOR="Kris Urbański"
+AUTHOR="Kris Urbanski"
 APP_NAME=publishing
 WORKING_BRANCH=page_`date +%Y%m%d`
 ORIGIN=git@github.com:przor3n/whereibend.space.git
@@ -169,5 +169,3 @@ endif
 
 pelican-publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
-
-
