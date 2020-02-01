@@ -27,10 +27,10 @@ export PRINT_HELP_PYSCRIPT
 
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
-AUTHOR="Oren Kot"
+AUTHOR="Kris Urbański"
 APP_NAME=publishing
 WORKING_BRANCH=page_`date +%Y%m%d`
-ORIGIN=git@github.com:przemekkot/whereibend.space.git
+ORIGIN=git@github.com:przor3n/whereibend.space.git
 
 a:
 	echo $(AUTHOR)
