@@ -60,7 +60,7 @@ clean-test: ## remove test and coverage artifacts
 build:
 	export  BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 	git checkout -b $(WORKING_BRANCH)
-	make prepare-content
+	## make prepare-content
 	make generate-page
 	## I would add here some tests
 	git add -A
@@ -74,9 +74,9 @@ generate-page:
 	pelican content -t themes/svbtle -s pelicanconf.py
 
 prepare-content:
-	export PB_AUTHOR=$(AUTHOR)
-	rm -fr content/*
-	publishing_boy notes content
+	# export PB_AUTHOR=$(AUTHOR)
+	# rm -fr content/*
+	# publishing_boy notes content
 
 publish: build
 	git checkout master
@@ -100,6 +100,8 @@ virtualenv:
 	@echo
 	@echo "VirtualENV Setup Complete. Now run: source .venv/bin/activate"
 	@echo
+
+
 PY?=python
 PELICAN?=pelican
 PELICANOPTS=
