@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="https://whereibend.space/theme/css/style.css">
+	<!--<link rel="stylesheet/less" type="text/css" href="/theme/css/style.less">-->
+	<!--<script src="/theme/js/less.js" type="text/javascript"></script>-->
+	<link rel="stylesheet" type="text/css" href="https://whereibend.space/theme/css/pygments.css">
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:800,400,300|Inconsolata' rel='stylesheet' type='text/css'>
+
+	<link href="https://whereibend.space/" type="application/atom+xml" rel="alternate" title="whereibend.space ATOM Feed" />
+
+
+		<title>whereibend.space</title>
+		<meta charset="utf-8" />
+</head>
+<body>
+	<section id="sidebar">
+		<figure id="user_logo">
+            <a href="https://whereibend.space"><div class="logo">&nbsp;</div></a>
+		</figure>
+
+		<div class="user_meta">
+            <h1 id="user"><a href="https://whereibend.space" class="">Kris Urbanski</a></h1>
+			<h2></h2>
+			<ul>
+			</ul>
+		</div>
+		<footer>
+			<address>
+				Powered by <a href="http://pelican.notmyidea.org/">Pelican</a>,
+		                theme by <a href="https://github.com/wting/pelican-svbtle">wting</a>.
+			</address>
+		</footer>
+	</section>
+
+	<section id="posts">
+	<header>
+		<h1>Kris's blog</h1>
+		<h3>Posted wto 10 marca 2020</h3>
+	</header>
+	<article>
+		<h1 id="title">
+			<a href="https://whereibend.space/gnu-make-or-local-cicd-pipeline.html" rel="bookmark"
+				title="Permalink to GNU make or local CI/CD pipeline">GNU make or local CI/CD pipeline</a>
+		</h1>
+		<p>I like <a href="https://www.gnu.org/software/make/manual/">GNU make</a>. It's an old tool used
+to build C programs, but it's powers are beyond that. You create a <code>Makefile</code> where
+you define tasks like this:</p>
+<div class="highlight"><pre><span></span><span class="n">task1</span><span class="o">:</span>
+    <span class="n">echo</span> <span class="s2">&quot;I am task1&quot;</span>
+</pre></div>
+
+
+<p>You can use any tools to make those tasks. You can use variables inside Makefile.
+You can chain those tasks. You can glob files. You can even type in some python code
+inside it and run use it. Like this:</p>
+<div class="highlight"><pre><span></span><span class="n">clean</span><span class="o">:</span>
+    <span class="n">echo</span> <span class="s2">&quot;do some cleanup&quot;</span>
+
+
+<span class="n">test</span><span class="o">:</span> <span class="n">clean</span>
+    <span class="n">echo</span> <span class="s2">&quot;do some tests&quot;</span>
+
+
+<span class="n">build</span><span class="o">:</span> <span class="n">test</span>
+    <span class="n">echo</span> <span class="s2">&quot;build the project&quot;</span>
+
+
+<span class="n">release</span><span class="o">:</span> <span class="n">build</span>
+    <span class="n">echo</span> <span class="s2">&quot;release the project&quot;</span>
+</pre></div>
+
+
+<p>In this example Makefile, if you run <code>make clean</code> you will see "do some cleanup",
+if you run <code>make test</code> you'll see "do some cleanup" and in next line "do some tests", and so on.</p>
+<p>This is a local CI/CD pipeline, and it can be easy converted to a Jenkins pipeline for example.
+You can define each stage of Jenkins pipeline per make task. This will reduce the chaos inside your
+Jenkinsfile. All your problems will be reduced to configuring Jenkins environment so that it can
+run your make tasks. You just divided your job with CI/CD pipeline into smaller manageable tasks:
+build pipeline locally using make, configure Jenkins so it can run your tasks and have profit.</p>
+<p>I also use Makefile as a notebook for my project commands. It's a great place to store
+commands you use during development.</p>
+<p>Currently I reuse several Makefiles, that are filled with predefined commands(i.e. for working with docker
+or python) and I combine them depending on what functions I need in a given project. I use direnv
+with this and use predefined shell variables inside my Makefiles. This way I only need to define some values
+once and the rest is magic.</p>
+
+		<div id="article_meta">
+				Category:
+					<a href="https://whereibend.space/category/programming-make-linux-gnu.html">programming make linux gnu</a>
+		</div>
+	</article>
+
+	<footer>
+		<a href="https://whereibend.space/" class="button_accent">&larr;&nbsp;&nbsp;&nbsp;Back to blog</a>
+	</footer>
+
+
+	</section>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122651002-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122651002-1');
+</script>
+
+
+</body>
+</html>
