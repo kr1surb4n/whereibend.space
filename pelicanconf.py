@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Przemek Kot'
+AUTHOR = u'Kris Urbansky'
 SITENAME = 'whereibend.space'
 #SITEURL = 'http://localhost:8000'
 UNI_SITEURL = '//whereibend.space'
