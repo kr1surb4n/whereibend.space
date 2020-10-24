@@ -36,23 +36,40 @@
 
 	<section id="posts">
 	<header>
-		<h1>plum plum's blog</h1>
-		<h3>
-			<script type="text/javascript">
-				var currentDate = new Date();
-				var day = currentDate.getDate();
-				var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-				var month = monthNames[currentDate.getMonth()].toUpperCase();
-				var year = currentDate.getFullYear();
-				document.write(month + " " + day + ", " + year);
-			</script>
-		</h3>
+		<h1>Kris's blog</h1>
+		<h3>Posted Mo 09 März 2020</h3>
 	</header>
+	<article>
+		<h1 id="title">
+			<a href="https://plumplum.space/some-messing-around-dia-code.html" rel="bookmark"
+				title="Permalink to Some messing around Dia code">Some messing around Dia code</a>
+		</h1>
+		<p>I begin to mess around the Dia project.
+First problem showed up when I run <code>ninja install</code>.
+On Ubuntu 20.04 you need to install <code>libpoppler-private-dev</code>
+to compile that.
+Later onthere was an nondeterministic bug. Importing the dtd
+for documentatno generator failed. Running the process one
+more time made it run.</p>
+<p>Cool. Now I have to figure out what the hell is libpeas.
+Gnome ToDo has this. I want to look into it and copy&amp;paste.
+But I think that first maybe I will go and try runing the
+Python 3.</p>
+<p>I need to read up the python developer docs. First I run
+Dia with Python3. When I'll do that I think, I will know
+what the libpeas does.</p>
 
-	<dl id="tag_list">
-		<ul>
-		</ul>
-	</dl>
+		<div id="article_meta">
+				Category:
+					<a href="https://plumplum.space/category/dia-opensource-python-c.html">dia opensource python c</a>
+		</div>
+	</article>
+
+	<footer>
+		<a href="https://plumplum.space/" class="button_accent">&larr;&nbsp;&nbsp;&nbsp;Back to blog</a>
+	</footer>
+
+
 	</section>
 
 </body>

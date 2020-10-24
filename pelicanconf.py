@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Kris Urbansky'
-SITENAME = 'whereibend.space'
+AUTHOR = u'plum plum'
+AUTHOR_BIO = u"I'm Kris, I do a lot of things and I like to write about them"
+SITENAME = 'plumplum.space'
 #SITEURL = 'http://localhost:8000'
-UNI_SITEURL = '//whereibend.space'
-SITEURL = 'https://whereibend.space'
+UNI_SITEURL = '//plumplum.space'
+SITEURL = 'https://plumplum.space'
 
 PATH = 'content'
 THEME = 'themes/svbtle'

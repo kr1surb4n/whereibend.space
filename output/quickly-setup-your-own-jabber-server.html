@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="https://plumplum.space/theme/css/style.css">
+	<!--<link rel="stylesheet/less" type="text/css" href="/theme/css/style.less">-->
+	<!--<script src="/theme/js/less.js" type="text/javascript"></script>-->
+	<link rel="stylesheet" type="text/css" href="https://plumplum.space/theme/css/pygments.css">
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:800,400,300|Inconsolata' rel='stylesheet' type='text/css'>
+
+	<link href="https://plumplum.space/" type="application/atom+xml" rel="alternate" title="plumplum.space ATOM Feed" />
+
+
+		<title>plumplum.space</title>
+		<meta charset="utf-8" />
+</head>
+<body>
+	<section id="sidebar">
+		<figure id="user_logo">
+            <a href="https://plumplum.space"><div class="logo">&nbsp;</div></a>
+		</figure>
+
+		<div class="user_meta">
+            <h1 id="user"><a href="https://plumplum.space" class="">plum plum</a></h1>
+			<h2></h2>
+			<p class="bio">I'm Kris, I do a lot of things and I like to write about them</p>
+			<ul>
+			</ul>
+		</div>
+		<footer>
+			<address>
+				Powered by <a href="http://pelican.notmyidea.org/">Pelican</a>,
+		                theme by <a href="https://github.com/wting/pelican-svbtle">wting</a>. No data collected.
+			</address>
+		</footer>
+	</section>
+
+	<section id="posts">
+	<header>
+		<h1>Kris's blog</h1>
+		<h3>Posted Mo 09 März 2020</h3>
+	</header>
+	<article>
+		<h1 id="title">
+			<a href="https://plumplum.space/quickly-setup-your-own-jabber-server.html" rel="bookmark"
+				title="Permalink to Quickly setup your own jabber server">Quickly setup your own jabber server</a>
+		</h1>
+		<p>When you read this texty, you will be able to set up
+your own jabber server (XMPP) using Prosody.
+For you it will be few minutes, for me it was few hours.</p>
+<p>Why have a private jabber server? 
+You won't relay on any corporate message communicator.
+You will controll your and your familly privacy, have controll of your
+data (well, that depends on how well you secure stuff).</p>
+<p>I, for starters, used xmpp sever as a notification platform. 
+Some automated script done stuff and when it succeded or failed
+it sent me a message (with a link to quickly respond). Later on,
+I extended it on my private communication channel. </p>
+<p>Here I will use <a href="https://prosody.im">Prosody</a>, a simple (but powerful) xmpp server written in lua.</p>
+<p>Below you will find the configuration for a simple setup with
+file storage and multiuser chat.</p>
+<p>You need a domain, two subdomains (for upload and conferences/muc),
+SSL certificates (I use Letsencrypt - you have to have cert for each domain
+and its subdomain). Docker stuff you will find in this <a href="http://">repository</a>
+- it's a bit more complicated than this setup, but still easy to run.</p>
+<p>I use Letsencrypt for SSL certs. You will need to make 3 certificates: 
+one for your main domain, one for subdomain where file upload will be
+placed and one for multi chat service. LE doesn't have wildcard certs.</p>
+<p>Errors:
+java.io.IOException: Cleartext HTTP traffic to * not permitted
+No key present in SSL/TLS configuration for https port 5281</p>
+<div class="highlight"><pre><span></span><code><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">MAIN_DOMAIN</span><span class="o">.</span><span class="n">COM</span><span class="p">:</span><span class="mi">5280</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">MAIN_DOMAIN</span><span class="o">.</span><span class="n">COM</span><span class="p">:</span><span class="mi">5281</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span>
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">u</span><span class="o">.</span><span class="n">plumplum</span><span class="o">.</span><span class="n">space</span><span class="p">:</span><span class="mi">5280</span><span class="o">/</span><span class="n">upload</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">u</span><span class="o">.</span><span class="n">plumplum</span><span class="o">.</span><span class="n">space</span><span class="p">:</span><span class="mi">5281</span><span class="o">/</span><span class="n">upload</span>
+</code></pre></div>
+
+<p>https://www.xabber.com/
+<a href="https://hg.prosody.im/trunk/">prosody code</a>
+<a href="https://github.com/prosody/prosody-docker">prosody docer</a></p>
+<p>5222
+5269
+5347
+5280
+5281</p>
+<p><a href="https://prosody.im/doc/http">http server</a></p>
+<p><a href="https://prosody.im/doc/ports">ports</a>
+<a href="https://prosody.im/doc/modules/mod_auth_internal_hashed">hashing passwords</a>
+<a href="https://prosody.im/doc/libevent">libevent - handling big loads</a></p>
+<p><a href="https://prosody.im/doc/logging">logging</a>
+<a href="https://prosody.im/doc/advanced_logging">advanced logging</a></p>
+<p><a href="https://prosody.im/doc/public_servers">important stuff for open servers</a>
+<a href="https://prosody.im/doc/backups">backups</a></p>
+<p><a href="https://prosody.im/doc/modules">core modules</a>
+<a href="https://modules.prosody.im/">other modules</a>
+<a href="https://prosody.im/doc/authentication">authentication</a>
+<a href="https://prosody.im/doc/migrator">migrate data between data stores</a></p>
+<p>MAIN_DOMAIN.COM
+UPLOAD.MAIN_DOMAIN.COM
+MUC.MAIN_DOMAIN.COM</p>
+<p>private materials:
+<a href="https://www.cyberpunk.rs/prosody-server-setup-0-10-xmpp">config 1</a>
+<a href="https://community.hetzner.com/tutorials/prosody-debian9#step-4---check-configuration-start-prosody-server-and-create-the-admin-user">config 2</a></p>
+<div class="highlight"><pre><span></span><code><span class="n">daemonize</span> <span class="o">=</span> <span class="bp">false</span><span class="p">;</span>
+
+<span class="o">----------</span> <span class="n">Server</span><span class="o">-</span><span class="n">wide</span> <span class="n">settings</span> <span class="o">----------</span>
+<span class="o">--</span> <span class="n">Example</span><span class="p">:</span> <span class="n">admins</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;user1@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;user2@example.net&quot;</span> <span class="p">}</span>
+<span class="n">admins</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="n">plugin_paths</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;/usr/lib/prosody/modules-community&quot;</span> <span class="p">}</span>
+
+<span class="n">modules_enabled</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="o">--</span> <span class="n">Generally</span> <span class="n">required</span>
+                <span class="s2">&quot;roster&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Allow</span> <span class="n">users</span> <span class="n">to</span> <span class="n">have</span> <span class="n">a</span> <span class="n">roster</span><span class="o">.</span> <span class="n">Recommended</span> <span class="p">;)</span>
+                <span class="s2">&quot;saslauth&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Authentication</span> <span class="k">for</span> <span class="n">clients</span> <span class="ow">and</span> <span class="n">servers</span><span class="o">.</span> <span class="n">Recommended</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="nb">log</span> <span class="ow">in</span><span class="o">.</span>
+                <span class="s2">&quot;tls&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Add</span> <span class="n">support</span> <span class="k">for</span> <span class="n">secure</span> <span class="n">TLS</span> <span class="n">on</span> <span class="n">c2s</span><span class="o">/</span><span class="n">s2s</span> <span class="n">connections</span>
+                <span class="s2">&quot;dialback&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">s2s</span> <span class="n">dialback</span> <span class="n">support</span>
+                <span class="s2">&quot;disco&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Service</span> <span class="n">discovery</span>
+                <span class="s2">&quot;posix&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">POSIX</span> <span class="n">functionality</span><span class="p">,</span> <span class="n">sends</span> <span class="n">server</span> <span class="n">to</span> <span class="n">background</span><span class="p">,</span> <span class="n">enables</span> <span class="n">syslog</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span>
+                <span class="s2">&quot;offline&quot;</span><span class="p">;</span>
+
+        <span class="o">--</span> <span class="n">Not</span> <span class="n">essential</span><span class="p">,</span> <span class="n">but</span> <span class="n">recommended</span>
+                <span class="s2">&quot;private&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Private</span> <span class="n">XML</span> <span class="n">storage</span> <span class="p">(</span><span class="k">for</span> <span class="n">room</span> <span class="n">bookmarks</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span><span class="p">)</span>
+                <span class="s2">&quot;vcard&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Allow</span> <span class="n">users</span> <span class="n">to</span> <span class="n">set</span> <span class="n">vCards</span>
+
+        <span class="o">--</span> <span class="n">Nice</span> <span class="n">to</span> <span class="n">have</span>
+                <span class="o">--</span><span class="s2">&quot;version&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Replies</span> <span class="n">to</span> <span class="n">server</span> <span class="n">version</span> <span class="n">requests</span>
+                <span class="o">--</span><span class="s2">&quot;uptime&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Report</span> <span class="n">how</span> <span class="n">long</span> <span class="n">server</span> <span class="n">has</span> <span class="n">been</span> <span class="n">running</span>
+                <span class="s2">&quot;time&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Let</span> <span class="n">others</span> <span class="n">know</span> <span class="n">the</span> <span class="n">time</span> <span class="n">here</span> <span class="n">on</span> <span class="n">this</span> <span class="n">server</span>
+                <span class="s2">&quot;ping&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Replies</span> <span class="n">to</span> <span class="n">XMPP</span> <span class="n">pings</span> <span class="n">with</span> <span class="n">pongs</span>
+                <span class="s2">&quot;pep&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Enables</span> <span class="n">users</span> <span class="n">to</span> <span class="n">publish</span> <span class="n">their</span> <span class="n">mood</span><span class="p">,</span> <span class="n">activity</span><span class="p">,</span> <span class="n">playing</span> <span class="n">music</span> <span class="ow">and</span> <span class="n">more</span>
+                <span class="o">--</span><span class="s2">&quot;register&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Allow</span> <span class="n">users</span> <span class="n">to</span> <span class="n">register</span> <span class="n">on</span> <span class="n">this</span> <span class="n">server</span> <span class="n">using</span> <span class="n">a</span> <span class="n">client</span> <span class="ow">and</span> <span class="n">change</span> <span class="n">passwords</span>
+                <span class="s2">&quot;carbons&quot;</span><span class="p">;</span>
+       <span class="o">--</span> <span class="n">Admin</span> <span class="n">interfaces</span>
+                <span class="o">--</span><span class="s2">&quot;admin_adhoc&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Allows</span> <span class="n">administration</span> <span class="n">via</span> <span class="n">an</span> <span class="n">XMPP</span> <span class="n">client</span> <span class="n">that</span> <span class="n">supports</span> <span class="n">ad</span><span class="o">-</span><span class="n">hoc</span> <span class="n">commands</span>
+                <span class="o">--</span><span class="s2">&quot;admin_telnet&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Opens</span> <span class="n">telnet</span> <span class="n">console</span> <span class="n">interface</span> <span class="n">on</span> <span class="n">localhost</span> <span class="n">port</span> <span class="mi">5582</span>
+
+        <span class="o">--</span> <span class="n">HTTP</span> <span class="n">modules</span>
+                <span class="s2">&quot;http&quot;</span><span class="p">;</span>
+                <span class="o">--</span><span class="s2">&quot;bosh&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Enable</span> <span class="n">BOSH</span> <span class="n">clients</span><span class="p">,</span> <span class="n">aka</span> <span class="s2">&quot;Jabber over HTTP&quot;</span>
+                <span class="s2">&quot;http_files&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Serve</span> <span class="k">static</span> <span class="n">files</span> <span class="n">from</span> <span class="n">a</span> <span class="n">directory</span> <span class="n">over</span> <span class="n">HTTP</span>
+                <span class="s2">&quot;http_upload&quot;</span><span class="p">;</span>
+
+        <span class="o">--</span> <span class="n">Other</span> <span class="n">specific</span> <span class="n">functionality</span>
+                <span class="s2">&quot;groups&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Shared</span> <span class="n">roster</span> <span class="n">support</span>
+                <span class="o">--</span><span class="s2">&quot;announce&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Send</span> <span class="n">announcement</span> <span class="n">to</span> <span class="n">all</span> <span class="n">online</span> <span class="n">users</span>
+                <span class="o">--</span><span class="s2">&quot;welcome&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Welcome</span> <span class="n">users</span> <span class="n">who</span> <span class="n">register</span> <span class="n">accounts</span>
+                <span class="o">--</span><span class="s2">&quot;watchregistrations&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Alert</span> <span class="n">admins</span> <span class="n">of</span> <span class="n">registrations</span>
+                <span class="o">--</span><span class="s2">&quot;motd&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Send</span> <span class="n">a</span> <span class="n">message</span> <span class="n">to</span> <span class="n">users</span> <span class="n">when</span> <span class="n">they</span> <span class="nb">log</span> <span class="ow">in</span>
+                <span class="o">--</span><span class="s2">&quot;legacyauth&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">Legacy</span> <span class="n">authentication</span><span class="o">.</span> <span class="n">Only</span> <span class="n">used</span> <span class="n">by</span> <span class="n">some</span> <span class="n">old</span> <span class="n">clients</span> <span class="ow">and</span> <span class="n">bots</span><span class="o">.</span>
+        <span class="o">--</span> <span class="n">Mine</span>
+                <span class="o">--</span> <span class="s2">&quot;muc&quot;</span><span class="p">;</span><span class="o">--</span> <span class="n">multiuser</span> <span class="n">chat</span>
+                <span class="o">--</span> <span class="s2">&quot;muc_mam&quot;</span><span class="p">;</span> <span class="o">--</span> <span class="n">multichannerl</span> <span class="n">archiving</span>
+                <span class="s2">&quot;message&quot;</span><span class="p">;};</span>
+
+
+<span class="o">--</span> <span class="n">Disable</span> <span class="n">account</span> <span class="n">creation</span> <span class="n">by</span> <span class="n">default</span><span class="p">,</span> <span class="k">for</span> <span class="n">security</span>
+<span class="n">allow_registration</span> <span class="o">=</span> <span class="bp">false</span><span class="p">;</span>
+
+<span class="n">c2s_require_encryption</span> <span class="o">=</span> <span class="bp">true</span>
+<span class="n">s2s_secure_auth</span> <span class="o">=</span> <span class="bp">true</span>
+
+<span class="o">--</span> <span class="n">Required</span> <span class="k">for</span> <span class="n">init</span> <span class="n">scripts</span> <span class="ow">and</span> <span class="n">prosodyctl</span>
+<span class="n">pidfile</span> <span class="o">=</span> <span class="s2">&quot;/var/run/prosody/prosody.pid&quot;</span>
+
+<span class="o">--</span> <span class="n">Select</span> <span class="n">the</span> <span class="n">authentication</span> <span class="n">backend</span> <span class="n">to</span> <span class="n">use</span><span class="o">.</span> <span class="n">The</span> <span class="s1">&#39;internal&#39;</span> <span class="n">providers</span>
+<span class="o">--</span> <span class="n">use</span> <span class="n">Prosody</span><span class="s1">&#39;s configured data storage to store the authentication data.</span>
+<span class="o">--</span> <span class="n">To</span> <span class="n">allow</span> <span class="n">Prosody</span> <span class="n">to</span> <span class="n">offer</span> <span class="n">secure</span> <span class="n">authentication</span> <span class="n">mechanisms</span> <span class="n">to</span> <span class="n">clients</span><span class="p">,</span> <span class="n">the</span>
+<span class="o">--</span> <span class="n">default</span> <span class="n">provider</span> <span class="n">stores</span> <span class="n">passwords</span> <span class="ow">in</span> <span class="n">plaintext</span><span class="o">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">trust</span> <span class="n">your</span>
+<span class="o">--</span> <span class="n">server</span> <span class="n">please</span> <span class="n">see</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">prosody</span><span class="o">.</span><span class="n">im</span><span class="o">/</span><span class="n">doc</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">mod_auth_internal_hashed</span>
+<span class="o">--</span> <span class="k">for</span> <span class="n">information</span> <span class="n">about</span> <span class="n">using</span> <span class="n">the</span> <span class="n">hashed</span> <span class="n">backend</span><span class="o">.</span>
+
+<span class="o">--</span> <span class="n">NOT</span> <span class="n">SECURE</span><span class="o">!!</span>
+<span class="n">authentication</span> <span class="o">=</span> <span class="s2">&quot;internal_hashed&quot;</span>
+
+<span class="o">--</span> <span class="n">Select</span> <span class="n">the</span> <span class="n">storage</span> <span class="n">backend</span> <span class="n">to</span> <span class="n">use</span><span class="o">.</span> <span class="n">By</span> <span class="n">default</span> <span class="n">Prosody</span> <span class="n">uses</span> <span class="n">flat</span> <span class="n">files</span>
+<span class="o">--</span> <span class="ow">in</span> <span class="n">its</span> <span class="n">configured</span> <span class="n">data</span> <span class="n">directory</span><span class="p">,</span> <span class="n">but</span> <span class="n">it</span> <span class="n">also</span> <span class="n">supports</span> <span class="n">more</span> <span class="n">backends</span>
+<span class="o">--</span> <span class="n">through</span> <span class="n">modules</span><span class="o">.</span> <span class="n">An</span> <span class="s2">&quot;sql&quot;</span> <span class="n">backend</span> <span class="k">is</span> <span class="n">included</span> <span class="n">by</span> <span class="n">default</span><span class="p">,</span> <span class="n">but</span> <span class="n">requires</span>
+<span class="o">--</span> <span class="n">additional</span> <span class="n">dependencies</span><span class="o">.</span> <span class="n">See</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">prosody</span><span class="o">.</span><span class="n">im</span><span class="o">/</span><span class="n">doc</span><span class="o">/</span><span class="n">storage</span> <span class="k">for</span> <span class="n">more</span> <span class="n">info</span><span class="o">.</span>
+
+<span class="o">--</span><span class="n">storage</span> <span class="o">=</span> <span class="s2">&quot;sql&quot;</span> <span class="o">--</span> <span class="n">Default</span> <span class="k">is</span> <span class="s2">&quot;internal&quot;</span>
+
+<span class="o">--</span> <span class="n">For</span> <span class="n">the</span> <span class="s2">&quot;sql&quot;</span> <span class="n">backend</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">uncomment</span> <span class="o">*</span><span class="n">one</span><span class="o">*</span> <span class="n">of</span> <span class="n">the</span> <span class="n">below</span> <span class="n">to</span> <span class="n">configure</span><span class="p">:</span>
+<span class="o">--</span><span class="n">sql</span> <span class="o">=</span> <span class="p">{</span> <span class="n">driver</span> <span class="o">=</span> <span class="s2">&quot;SQLite3&quot;</span><span class="p">,</span> <span class="n">database</span> <span class="o">=</span> <span class="s2">&quot;prosody.sqlite&quot;</span> <span class="p">}</span> <span class="o">--</span> <span class="n">Default</span><span class="o">.</span> <span class="s1">&#39;database&#39;</span> <span class="k">is</span> <span class="n">the</span> <span class="n">filename</span><span class="o">.</span>
+<span class="o">--</span><span class="n">sql</span> <span class="o">=</span> <span class="p">{</span> <span class="n">driver</span> <span class="o">=</span> <span class="s2">&quot;MySQL&quot;</span><span class="p">,</span> <span class="n">database</span> <span class="o">=</span> <span class="s2">&quot;prosody&quot;</span><span class="p">,</span> <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;prosody&quot;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;secret&quot;</span><span class="p">,</span> <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span> <span class="p">}</span>
+<span class="o">--</span><span class="n">sql</span> <span class="o">=</span> <span class="p">{</span> <span class="n">driver</span> <span class="o">=</span> <span class="s2">&quot;PostgreSQL&quot;</span><span class="p">,</span> <span class="n">database</span> <span class="o">=</span> <span class="s2">&quot;prosody&quot;</span><span class="p">,</span> <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;prosody&quot;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;secret&quot;</span><span class="p">,</span> <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
+
+<span class="o">--</span> <span class="n">Logging</span> <span class="n">configuration</span>
+<span class="o">--</span> <span class="n">For</span> <span class="n">advanced</span> <span class="n">logging</span> <span class="n">see</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">prosody</span><span class="o">.</span><span class="n">im</span><span class="o">/</span><span class="n">doc</span><span class="o">/</span><span class="n">logging</span>
+<span class="o">--</span> <span class="n">levels</span><span class="p">:</span> <span class="n">debug</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">warn</span><span class="p">,</span> <span class="n">error</span> 
+<span class="nb">log</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">{</span><span class="n">levels</span> <span class="o">=</span> <span class="p">{</span><span class="nb">min</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span><span class="p">},</span> <span class="n">to</span> <span class="o">=</span> <span class="s2">&quot;console&quot;</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="n">groups_file</span> <span class="o">=</span> <span class="s2">&quot;/etc/prosody/sharedgroups.txt&quot;</span>
+
+
+<span class="o">----</span> <span class="n">Virtual</span> <span class="n">hosts</span> <span class="o">-----------</span>
+<span class="o">--</span> <span class="n">You</span> <span class="n">need</span> <span class="n">to</span> <span class="n">add</span> <span class="n">a</span> <span class="n">VirtualHost</span> <span class="n">entry</span> <span class="k">for</span> <span class="n">each</span> <span class="n">domain</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">Prosody</span> <span class="n">to</span> <span class="n">serve</span><span class="o">.</span>
+<span class="o">--</span> <span class="n">Settings</span> <span class="n">under</span> <span class="n">each</span> <span class="n">VirtualHost</span> <span class="n">entry</span> <span class="n">apply</span> <span class="o">*</span><span class="n">only</span><span class="o">*</span> <span class="n">to</span> <span class="n">that</span> <span class="n">host</span><span class="o">.</span>
+
+<span class="o">--</span> <span class="n">THIS</span> <span class="n">IS</span> <span class="n">NECCESARY</span> <span class="n">HERE</span><span class="p">,</span> <span class="n">it</span><span class="s1">&#39;s certificate to your main domain</span>
+<span class="n">https_key</span> <span class="o">=</span> <span class="s2">&quot;/etc/prosody/certs/MAIN_DOMAIN.COM.key&quot;</span><span class="p">;</span>
+<span class="n">https_certificate</span> <span class="o">=</span> <span class="s2">&quot;/etc/prosody/certs/MAIN_DOMAIN.COIN.crt&quot;</span><span class="p">;</span>
+
+<span class="n">VirtualHost</span> <span class="s2">&quot;MAIN_DOMAIN.COM&quot;</span>
+<span class="o">--</span> <span class="n">Certificate</span> <span class="k">is</span> <span class="n">set</span> <span class="n">AUTOMATICALY</span> <span class="ow">and</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">GLOBAL</span> <span class="n">CONFIG</span> <span class="n">SECTION</span>
+
+<span class="o">------</span> <span class="n">Components</span> <span class="o">------</span>
+<span class="o">--</span> <span class="n">For</span> <span class="n">more</span> <span class="n">information</span> <span class="n">on</span> <span class="n">components</span><span class="p">,</span> <span class="n">see</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">prosody</span><span class="o">.</span><span class="n">im</span><span class="o">/</span><span class="n">doc</span><span class="o">/</span><span class="n">components</span>
+<span class="n">Component</span> <span class="s2">&quot;UPLOAD.MAIN_DOMAIN.COM&quot;</span> <span class="s2">&quot;http_upload&quot;</span>
+<span class="o">--</span> <span class="n">Certificate</span> <span class="k">is</span> <span class="n">set</span> <span class="n">AUTOMATICALY</span> <span class="ow">and</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">GLOBAL</span> <span class="n">CONFIG</span> <span class="n">SECTION</span>
+        <span class="n">http_files_dir</span> <span class="o">=</span> <span class="s2">&quot;/var/www&quot;</span>
+
+<span class="o">---</span><span class="n">Set</span> <span class="n">up</span> <span class="n">a</span> <span class="n">MUC</span> <span class="p">(</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span> <span class="n">chat</span><span class="p">)</span> <span class="n">room</span> <span class="n">server</span> <span class="n">on</span> <span class="n">conference</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span>
+<span class="n">Component</span> <span class="s2">&quot;MUC.MAIN_DOMAIN.COM&quot;</span> <span class="s2">&quot;muc&quot;</span>
+<span class="o">--</span> <span class="n">Certificate</span> <span class="k">is</span> <span class="n">set</span> <span class="n">AUTOMATICALY</span> <span class="ow">and</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">GLOBAL</span> <span class="n">CONFIG</span> <span class="n">SECTION</span>
+</code></pre></div>
+
+		<div id="article_meta">
+				Category:
+					<a href="https://plumplum.space/category/devops-server-jabber-prosody-xmpp.html">devops server jabber prosody XMPP</a>
+		</div>
+	</article>
+
+	<footer>
+		<a href="https://plumplum.space/" class="button_accent">&larr;&nbsp;&nbsp;&nbsp;Back to blog</a>
+	</footer>
+
+
+	</section>
+
+</body>
+</html>
