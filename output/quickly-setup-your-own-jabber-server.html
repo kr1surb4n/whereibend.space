@@ -37,7 +37,7 @@
 	<section id="posts">
 	<header>
 		<h1>Kris's blog</h1>
-		<h3>Posted Mo 09 März 2020</h3>
+		<h3>Posted Fr 09 Oktober 2020</h3>
 	</header>
 	<article>
 		<h1 id="title">
@@ -58,16 +58,45 @@ I extended it on my private communication channel. </p>
 <p>Here I will use <a href="https://prosody.im">Prosody</a>, a simple (but powerful) xmpp server written in lua.</p>
 <p>Below you will find the configuration for a simple setup with
 file storage and multiuser chat.</p>
-<p>You need a domain, two subdomains (for upload and conferences/muc),
-SSL certificates (I use Letsencrypt - you have to have cert for each domain
-and its subdomain). Docker stuff you will find in this <a href="http://">repository</a>
-- it's a bit more complicated than this setup, but still easy to run.</p>
-<p>I use Letsencrypt for SSL certs. You will need to make 3 certificates: 
-one for your main domain, one for subdomain where file upload will be
-placed and one for multi chat service. LE doesn't have wildcard certs.</p>
-<p>Errors:
-java.io.IOException: Cleartext HTTP traffic to * not permitted
-No key present in SSL/TLS configuration for https port 5281</p>
+<h3>Installation and config</h3>
+<p>You will need:
+- a domain, 
+- two subdomains (for upload and conferences/muc),
+- SSL certificates for this domain and subdomains (I use Letsencrypt - you have to have cert for each domain
+and its subdomain). </p>
+<p>Docker stuff you will find in this <a href="http://">repository</a>, 
+it's a bit more complicated than this setup, but still easy to run.</p>
+<p>I use Letsencrypt for SSL certs. You will need to make 3 certificates(LE doesn't have wildcard certs): 
+- one for your main domain, 
+- one for subdomain where file upload will be placed 
+- and one for multi chat service. </p>
+<p>I use those example domains through all the text here:</p>
+<div class="highlight"><pre><span></span><code><span class="err">MAIN_DOMAIN.COM</span>
+<span class="err">UPLOAD.MAIN_DOMAIN.COM</span>
+<span class="err">MUC.MAIN_DOMAIN.COM</span>
+</code></pre></div>
+
+<p>I have encountered those errors, when I was trying to have file upload: </p>
+<p><code>java.io.IOException: Cleartext HTTP traffic to * not permitted</code></p>
+<p><code>No key present in SSL/TLS configuration for https port 5281</code></p>
+<p>They are cause by not imported certs. There is a ugly walkaround.</p>
+<p>You have to run the import certificates command:</p>
+<p><code>COMMAND</code></p>
+<p>then, copy the certificates to <code>/etc/prosody/certs</code>.
+That's all, your server will work and it will only
+need as much config as in listing below.</p>
+<h4>Ports used by prosody</h4>
+<p>So you don't forget to unblock them on your firewall:</p>
+<div class="highlight"><pre><span></span><code><span class="err">5222</span>
+<span class="err">5269</span>
+<span class="err">5347</span>
+<span class="err">5280</span>
+<span class="err">5281</span>
+</code></pre></div>
+
+<h4>Checking the installation</h4>
+<p>When everything runs ok, you should be able to
+enter those URLs:</p>
 <div class="highlight"><pre><span></span><code><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">MAIN_DOMAIN</span><span class="o">.</span><span class="n">COM</span><span class="p">:</span><span class="mi">5280</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span>
 <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">MAIN_DOMAIN</span><span class="o">.</span><span class="n">COM</span><span class="p">:</span><span class="mi">5281</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span>
 
@@ -75,19 +104,17 @@ No key present in SSL/TLS configuration for https port 5281</p>
 <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">u</span><span class="o">.</span><span class="n">plumplum</span><span class="o">.</span><span class="n">space</span><span class="p">:</span><span class="mi">5281</span><span class="o">/</span><span class="n">upload</span>
 </code></pre></div>
 
-<p>https://www.xabber.com/
+<h3>Mobile client and usefull links to config everything</h3>
+<p>For mobile client I use Xabber:
+https://www.xabber.com/</p>
+<p>Prosody 
 <a href="https://hg.prosody.im/trunk/">prosody code</a>
 <a href="https://github.com/prosody/prosody-docker">prosody docer</a></p>
-<p>5222
-5269
-5347
-5280
-5281</p>
-<p><a href="https://prosody.im/doc/http">http server</a></p>
-<p><a href="https://prosody.im/doc/ports">ports</a>
+<p><a href="https://prosody.im/doc/http">http server</a>
+<a href="https://prosody.im/doc/ports">ports</a>
 <a href="https://prosody.im/doc/modules/mod_auth_internal_hashed">hashing passwords</a>
-<a href="https://prosody.im/doc/libevent">libevent - handling big loads</a></p>
-<p><a href="https://prosody.im/doc/logging">logging</a>
+<a href="https://prosody.im/doc/libevent">libevent - handling big loads</a>
+<a href="https://prosody.im/doc/logging">logging</a>
 <a href="https://prosody.im/doc/advanced_logging">advanced logging</a></p>
 <p><a href="https://prosody.im/doc/public_servers">important stuff for open servers</a>
 <a href="https://prosody.im/doc/backups">backups</a></p>
@@ -95,12 +122,10 @@ No key present in SSL/TLS configuration for https port 5281</p>
 <a href="https://modules.prosody.im/">other modules</a>
 <a href="https://prosody.im/doc/authentication">authentication</a>
 <a href="https://prosody.im/doc/migrator">migrate data between data stores</a></p>
-<p>MAIN_DOMAIN.COM
-UPLOAD.MAIN_DOMAIN.COM
-MUC.MAIN_DOMAIN.COM</p>
-<p>private materials:
+<p>Usefull materials (I thank the authors):
 <a href="https://www.cyberpunk.rs/prosody-server-setup-0-10-xmpp">config 1</a>
 <a href="https://community.hetzner.com/tutorials/prosody-debian9#step-4---check-configuration-start-prosody-server-and-create-the-admin-user">config 2</a></p>
+<p>Easiest config to run the server with file upload capabilities:</p>
 <div class="highlight"><pre><span></span><code><span class="n">daemonize</span> <span class="o">=</span> <span class="bp">false</span><span class="p">;</span>
 
 <span class="o">----------</span> <span class="n">Server</span><span class="o">-</span><span class="n">wide</span> <span class="n">settings</span> <span class="o">----------</span>
@@ -171,7 +196,7 @@ MUC.MAIN_DOMAIN.COM</p>
 <span class="o">--</span> <span class="n">server</span> <span class="n">please</span> <span class="n">see</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">prosody</span><span class="o">.</span><span class="n">im</span><span class="o">/</span><span class="n">doc</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">mod_auth_internal_hashed</span>
 <span class="o">--</span> <span class="k">for</span> <span class="n">information</span> <span class="n">about</span> <span class="n">using</span> <span class="n">the</span> <span class="n">hashed</span> <span class="n">backend</span><span class="o">.</span>
 
-<span class="o">--</span> <span class="n">NOT</span> <span class="n">SECURE</span><span class="o">!!</span>
+<span class="o">--</span> <span class="n">IMPORTANT</span>
 <span class="n">authentication</span> <span class="o">=</span> <span class="s2">&quot;internal_hashed&quot;</span>
 
 <span class="o">--</span> <span class="n">Select</span> <span class="n">the</span> <span class="n">storage</span> <span class="n">backend</span> <span class="n">to</span> <span class="n">use</span><span class="o">.</span> <span class="n">By</span> <span class="n">default</span> <span class="n">Prosody</span> <span class="n">uses</span> <span class="n">flat</span> <span class="n">files</span>
