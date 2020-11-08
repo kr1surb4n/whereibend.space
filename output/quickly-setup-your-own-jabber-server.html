@@ -81,7 +81,7 @@ it's a bit more complicated than this setup, but still easy to run.</p>
 <p><code>No key present in SSL/TLS configuration for https port 5281</code></p>
 <p>They are cause by not imported certs. There is a ugly walkaround.</p>
 <p>You have to run the import certificates command:</p>
-<p><code>COMMAND</code></p>
+<p><code>prosodyctl --root cert import /etc/letsencrypt/DIRECT_PATH_TO_FOLDERS_WITH_CERTS</code></p>
 <p>then, copy the certificates to <code>/etc/prosody/certs</code>.
 That's all, your server will work and it will only
 need as much config as in listing below.</p>
@@ -100,8 +100,8 @@ enter those URLs:</p>
 <div class="highlight"><pre><span></span><code><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">MAIN_DOMAIN</span><span class="o">.</span><span class="n">COM</span><span class="p">:</span><span class="mi">5280</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span>
 <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">MAIN_DOMAIN</span><span class="o">.</span><span class="n">COM</span><span class="p">:</span><span class="mi">5281</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span>
 
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">u</span><span class="o">.</span><span class="n">plumplum</span><span class="o">.</span><span class="n">space</span><span class="p">:</span><span class="mi">5280</span><span class="o">/</span><span class="n">upload</span>
-<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">u</span><span class="o">.</span><span class="n">plumplum</span><span class="o">.</span><span class="n">space</span><span class="p">:</span><span class="mi">5281</span><span class="o">/</span><span class="n">upload</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">UPLOAD</span><span class="o">.</span><span class="n">MAIN_DOMAIN</span><span class="o">.</span><span class="n">COM</span><span class="p">:</span><span class="mi">5280</span><span class="o">/</span><span class="n">upload</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">UPLOAD</span><span class="o">.</span><span class="n">MAIN_DOMAIN</span><span class="o">.</span><span class="n">COM</span><span class="p">:</span><span class="mi">5281</span><span class="o">/</span><span class="n">upload</span>
 </code></pre></div>
 
 <h3>Mobile client and usefull links to config everything</h3>
